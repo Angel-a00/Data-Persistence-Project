@@ -35,5 +35,10 @@ public class MenuUIHandler : MonoBehaviour
         UnityEditor.EditorApplication.ExitPlaymode();
 #endif
     }
-   
+    public void GoToRanking()
+    {
+        SceneManager.LoadScene("RankingScene");
+    }
+
+
 }

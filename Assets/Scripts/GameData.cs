@@ -32,8 +32,7 @@ public class GameData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadScores();
-        Debug.Log("Scores cargados: " + TopScores.Count);
-
+       
     }
     public void AddScore(string name, int score)
     {
@@ -55,9 +54,6 @@ public class GameData : MonoBehaviour
         ScoreListWrapper wrapper = new ScoreListWrapper ();
         wrapper.Scores = TopScores;
         string json = JsonUtility.ToJson(wrapper);
-
-        Debug.Log("GUARDANDO JSON: " + json);
-
         PlayerPrefs.SetString("TopScores", json);
         PlayerPrefs.Save();
     }
