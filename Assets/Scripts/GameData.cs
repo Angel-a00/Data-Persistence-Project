@@ -7,6 +7,8 @@ public class GameData : MonoBehaviour
 
     public string PlayerName;
 
+  
+
     [System.Serializable]
     public class  ScoreEntry
     {
@@ -32,7 +34,8 @@ public class GameData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadScores();
-       
+     
+
     }
     public void AddScore(string name, int score)
     {

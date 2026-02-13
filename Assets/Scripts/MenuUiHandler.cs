@@ -6,6 +6,7 @@ using TMPro;
 public class MenuUIHandler : MonoBehaviour
 {
     public TMP_InputField NameInput;
+    public AudioClip MenuMusic;
     public void StartGame()
     {
         if (NameInput == null)
@@ -24,6 +25,7 @@ public class MenuUIHandler : MonoBehaviour
 
         GameData.Instance.PlayerName = NameInput.text;
         SceneManager.LoadScene("main");
+       
 
     }
 
@@ -38,6 +40,11 @@ public class MenuUIHandler : MonoBehaviour
     public void GoToRanking()
     {
         SceneManager.LoadScene("RankingScene");
+    }
+   
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic(MenuMusic);
     }
 
 

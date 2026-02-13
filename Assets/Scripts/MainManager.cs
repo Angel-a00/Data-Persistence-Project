@@ -16,7 +16,9 @@ public class MainManager : MonoBehaviour
     public GameObject GameOverText;
 
     public TMP_Text PlayerNameText;
-    public TMP_Text RankingText;
+    public GameObject RankingButton;
+    public AudioClip GameMusic;
+    public AudioClip PlayerMusic;
 
 
     private bool m_Started = false;
@@ -29,6 +31,7 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RankingButton.SetActive(false);
         if (GameData.Instance != null)
         {
             PlayerNameText.text = "Player: " + GameData.Instance.PlayerName;
@@ -47,6 +50,9 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        AudioManager.Instance.PlayMusic(GameMusic);
+       
+
     }
 
     private void Update()
@@ -81,21 +87,17 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over ejecutado");
-        Debug.Log("Score añadido al ranking");
+       RankingButton.SetActive(true);
         m_GameOver = true;
         GameOverText.SetActive(true);
         GameData.Instance.AddScore
             (GameData.Instance.PlayerName, m_Points);
-        string rankingDisplay = "TOP SCORES\n";
-        int position = 1;
-        foreach (var entry in GameData.Instance.TopScores)
-        {
-            rankingDisplay += position + ". " + entry.PlayerName + " - " + entry.Score + "\n";
-            position++;
-        }
-        RankingText.text = rankingDisplay;
+        
+       
+    }
+    public void GoToRanking()
+    {
+        SceneManager.LoadScene("RankingScene");
     }
    
-
 }
